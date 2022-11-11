@@ -4,9 +4,10 @@ from PIL import Image
 import os
 
 path = "images"
-destination = "dest"
-list_of_images = os.listdir(path)
+destination = "/opt/icons"
+src = os.listdir(path)
 
+# dictionary of what we want our target specifications to be
 target_specs = {
     "degree": -90,
     "dimensions": (128, 128),
@@ -14,8 +15,8 @@ target_specs = {
     "format": "jpeg"
 }
 
-
-for file in list_of_images:
+# opening every file we find in the dictionary
+for file in src:
     try:
         print("Trying: " + file)
         with Image.open(path + "/" + file) as i:
