@@ -4,7 +4,7 @@ from PIL import Image
 import os
 
 path = "images"
-destination = "/opt/icons"
+destination = "opt/icons"
 src = os.listdir(path)
 
 # dictionary of what we want our target specifications to be
