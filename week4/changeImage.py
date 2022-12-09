@@ -2,38 +2,31 @@
 
 import os
 from pathlib import Path
-import sys
 from PIL import Image
 
-# listing all the images variables
-# imagesDir = '~/supplier-data/images' # linux
-imagesDir = 'supplier-data/images' # windows
-imagePath = os.path.expanduser(imagesDir)
-images = os.listdir(imagePath)
-sourceFormat = "tiff"
-distFormat = "jpeg"
+
+def convert_images(self):
+    new_image = Image.open(imagePath + '/' + fp)
+    new_image.convert('RGB').resize((600, 400)).save(imagePath + '/' + fp[:-5] + '.jpeg')
+    print(new_image, " is converted")
 
 
-for fp in images:
-    # Split the extension from the path and normalise it to lowercase.
-    #ext = os.path.splitext(fp)[-1].lower()
+if __name__ == '__main__':
+    #imagesDir = '~/supplier-data/images'  # linux
+    imagesDir = 'supplier-data/images'  # windows
+    imagePath = os.path.expanduser(imagesDir)
+    images = os.listdir(imagePath)
+    sourceFormat = "tiff"
+    distFormat = "jpeg"
 
-    # Now we can simply use == to check for equality, no need for wildcards.
-    if Path(fp).suffix == '.tiff':
-        print(fp, "is an tiff that we will change!")
+    for fp in images:
 
-    elif Path(fp).suffix == '.jpeg':
-        print(fp, "is a jpeg that we already changed!")
+        if Path(fp).suffix == '.tiff':
+            print(fp, "is an tiff that we will change!")
+            convert_images(fp)
 
-    else:
-        print (fp, "is an unknown file format.")
+        elif Path(fp).suffix == '.jpeg':
+            print(fp, "is a jpeg that we already changed!")
 
-
-# TODO: You will be using the PIL library to update all images within ~/supplier-data/images directory to the following specifications:
-"""
-Size: Change image resolution from 3000x2000 to 600x400 pixel
-Format: Change image format from .TIFF to .JPEG
-"""
-
-
-# TODO: After processing the images, save them in the same path ~/supplier-data/images, with a JPEG extension.
+        else:
+            print(fp, "is an unknown file format.")
