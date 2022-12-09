@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+from pathlib import Path
 import sys
 from PIL import Image
 
@@ -15,13 +16,15 @@ distFormat = "jpeg"
 
 for fp in images:
     # Split the extension from the path and normalise it to lowercase.
-    ext = os.path.splitext(fp)[-1].lower()
+    #ext = os.path.splitext(fp)[-1].lower()
 
     # Now we can simply use == to check for equality, no need for wildcards.
-    if ext == ".tiff":
-        print (fp, "is an tiff that we will change!")
-    elif ext == ".jpeg":
-        print (fp, "is a jpeg that we already changed!")
+    if Path(fp).suffix == '.tiff':
+        print(fp, "is an tiff that we will change!")
+
+    elif Path(fp).suffix == '.jpeg':
+        print(fp, "is a jpeg that we already changed!")
+
     else:
         print (fp, "is an unknown file format.")
 
